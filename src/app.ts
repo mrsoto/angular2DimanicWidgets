@@ -17,13 +17,8 @@ type ApplicationDescriptor = {
 export const applicationFactory = function applicationFactory({
   selector,
   ngModule,
-  providers,
   } : ApplicationDescriptor) {
 
-  const localProviders : Provider[] = [
-    { provide: ApplicationIdToken, useValue: selector}
-  ]
-  
   @Component({
     selector,
     template: `
@@ -68,10 +63,13 @@ widget {
     imports: [ BrowserModule, ngModule ],
     declarations: [ App ],
     bootstrap: [ App ],
-    providers: [].concat(localProviders).concat(providers)
+    providers: [
+       { provide: ApplicationIdToken, useValue: selector}
+    ]
   })
   class AppModule {}
 
   return AppModule
 
 }
+

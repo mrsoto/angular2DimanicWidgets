@@ -23,6 +23,7 @@ for ( let i=1; i<10; i++) {
     { provide: 'timestamp', useValue: new Date()},
     { provide: WidgetToken, useClass: ngModule}
     ]
-  const AppModule = applicationFactory({selector, providers, ngModule})
-  platformBrowserDynamic().bootstrapModule(AppModule)
+  const AppModule = applicationFactory({selector, ngModule})
+  platformBrowserDynamic(providers).bootstrapModule(AppModule)
 }
+
